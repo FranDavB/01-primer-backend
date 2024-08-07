@@ -16,4 +16,8 @@ export class CreateUserDto {
   @IsNotEmpty()
   @IsNumber()
   dni: number
+
+  @IsNotEmpty()
+  @IsString()
+  contraseña: string
 }

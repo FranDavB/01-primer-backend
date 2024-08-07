@@ -14,4 +14,7 @@ export class UpdateUserDto extends PartialType(CreateUserDto) {
   
     @IsNotEmpty()
     fecha: Date  
+
+    @IsString()
+    contraseña?: string
 }

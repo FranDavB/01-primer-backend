@@ -25,7 +25,9 @@ export class UsersService {
 
   async findAll() {
     try {
-      return this.usersRepository.find()
+      return this.usersRepository.find({
+        relations: ['roles'],
+      });
     } catch (error) {
       throw error
     }
@@ -33,7 +35,11 @@ export class UsersService {
 
   async findOne(id: number): Promise<User> {
     try {
-      const user = await this.usersRepository.findOne({ where: { id } });
+      const user = await this.usersRepository.findOne({
+        where: { id },
+        relations: ['roles']
+      });
+
       if (!user) {
         throw new NotFoundException(`User with ID ${id} not found`);
       }
@@ -43,6 +49,7 @@ export class UsersService {
       throw error
     }
   }
+
 
   async update(id: number, updateUserDto: UpdateUserDto) {
     try {

@@ -22,8 +22,10 @@ export class PostsService {
       if (!autor) {
         throw new NotFoundException(`User with ID ${createPostDto.autorId} not found`);
       }
-      const post = this.postsRepository.create(createPostDto);
-      return this.postsRepository.save(post);
+
+      let post = this.postsRepository.create(createPostDto);
+      post = await this.postsRepository.save(post); // Espera la resolución de la promesa
+      return this.postsRepository.findOne({ where: { id: post.id }, relations: ['autor'] });
 
     } catch (error) {
       throw error

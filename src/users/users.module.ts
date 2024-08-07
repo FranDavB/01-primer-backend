@@ -10,4 +10,4 @@ import { User } from './entities/user.entity';
   providers: [UsersService],
   exports: [TypeOrmModule, UsersService] // En este caso, al tener una tabla dependiente de esta, se debe exportar aca el TypeOrmModule y además se debe importar en el modulo destino
 })
-export class UsersModule {}
+export class UsersModule { }
